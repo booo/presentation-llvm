@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+    </style>
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# LLVM assembly language
+
+## Lyudmila Vaseva, Philipp Borgers
+
+---
+
+# Agenda
+
+1. Introduction
+2. Deep-dive
+3. ...
+
+---
+
+# Introduction
+
+* TODO add some gernal information
+* Language reference manual: http://llvm.org/docs/LangRef.html
+
+---
+
+# Types
+
+* typed language with lots of types
+* basic types #TODO find the right name
+  * integer, floats, pointers
+* aggregated types #TODO check name
+  * arrays, structs
+  * void
+
+---
+
+# Instructions
+
+---
+
+# Variables
+
+* named vs. unnamed
+* global vs. local
+* single static assignment form (SSA)
+
+---
+
+# Basic Blocks
+
+* starts with an optional label
+* list of instructions
+* terminator such as ret, br
+
+---
+
+# Functions
+
+* list of basic blocks
+
+---
+
+# haskell and llvm
+
+* llvm modules are:
+  * llvm-general
+  * llvm-general-pure
+
+---
+
+# llvm and vim
+
+* [vim plugin](https://github.com/Superbil/llvm.vim)
+* linting with [syntastic](https://github.com/scrooloose/syntastic)
+* bind lli to a key e.g. <F5>
+
+---
+
+# Fibonacci example
+
+    ; recursive fibonacci implementation
+    define i64 @fib(i64 %n) {
+      %1 = icmp eq i64 %n, 0
+      br i1 %1, label %zero, label %not_zero
+    not_zero:
+      %2 = icmp eq i64 %n, 1
+      br i1 %2, label %one, label %not_one
+    not_one:
+      ; input was not equal to zero or one
+      ; create function argument n-1 and n-2
+      %n_1 = sub i64 %n, 1
+      %n_2 = sub i64 %n, 2
+      ; call fib with n-1 and n-2
+      %r_1 = call i64(i64)* @fib(i64 %n_1)
+      %r_2 = call i64(i64)* @fib(i64 %n_2)
+      ; compute the sum
+      %r = add i64 %r_1, %r_2
+      ; return the sum
+      ret i64 %r
+    one:
+      ; input was equal to one -> return 1
+      ret i64 1
+    zero:
+      ; input was equal to zero -> return 0
+      ret i64 0
+    }
+
+
+    </textarea>
+    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
