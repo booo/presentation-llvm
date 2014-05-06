@@ -30,6 +30,12 @@ class: center, middle
 # Introduction
 
 * TODO add some gernal information
+* Low Level Virtual Machine
+* compiler infrastructure written in C++
+* goal: compile-time, link-time, run-time optimization of programms written in any language
+* project started in 2000 at University of Illinois Urbana-Campaign
+* further development by Apple
+* today: LLVM intermediate representation, LLVM debugger, LLVM C++ standard lib
 * Language reference manual: http://llvm.org/docs/LangRef.html
 
 ---
@@ -87,11 +93,18 @@ class: center, middle
 * global vs. local
 * static single assignment form (SSA)
 
-
     ; local variable
     %im_local =
     ; global variable
     @im_global = 
+
+---
+
+# Memory Operations
+
+* load and Store
+* alloca
+* getelementptr
 
 ---
 
