@@ -14,7 +14,7 @@
       }
     </style>
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
-    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script src="./highlight.pack.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -27,14 +27,6 @@ class: center, middle
 
 ---
 
-# Agenda
-
-1. Introduction
-2. Deep-dive
-3. ...
-
----
-
 # Introduction
 
 * TODO add some gernal information
@@ -42,18 +34,50 @@ class: center, middle
 
 ---
 
-# Types
+# Basic types
 
 * typed language with lots of types
 * basic types #TODO find the right name
   * integer, floats, pointers
+
+## integer type
+
+    i32
+    i64
+    i1 ; bool
+    i1337
+
+---
+
+# Aggregated types
+
 * aggregated types #TODO check name
   * arrays, structs
   * void
 
+## array
+
+    ; array of 42 i64 integers
+    @stack = global [42 x i64] undef
+
+## struct
+
+    %node = type {
+      i32,
+      %node*
+    }
+
+* packed structs
+
 ---
 
 # Instructions
+
+## Binary Instructions
+
+* add, mull, xor, ...
+
+    ; insert example here
 
 ---
 
@@ -63,19 +87,60 @@ class: center, middle
 * global vs. local
 * single static assignment form (SSA)
 
+
+    ; local variable
+    %im_local =
+    ; global variable
+    @im_global = 
+
 ---
 
 # Basic Blocks
 
+    ; Basic block without instructions
+    entry:
+      ret i32 0
+
+    ; Basic block with instruction and branch
+    not_zero:
+      %2 = icmp eq i64 %n, 1
+      br i1 %2, label %one, label %not_one
+
 * starts with an optional label
-* list of instructions
+* optional list of instructions
 * terminator such as ret, br
 
 ---
 
 # Functions
 
+## Function definition
+
 * list of basic blocks
+
+    ; simple function that returns zero
+    define i32 @main() {
+    entry:
+      ret i32 0
+    }
+
+    ; "complex" signature with var args
+    define i64 @foo(i64 %n, i64* %ptr, ...)
+
+## Function declaration
+
+
+    declare i32 @printf(i8*, ...)
+
+----
+
+# Function call
+
+
+    ; call fib function with 23 and store result
+    %result = call i64(i64)* @fib(i64 23)
+    ; call to external printf
+    call i32(i8*, ...)* @printf(i8* %str_ptr, i64 23, i64 %result)
 
 ---
 
