@@ -49,9 +49,13 @@ class: center, middle
 
     i32
     i64
-    i1 ; bool
+    i1
     i1337
+
     float
+    double
+
+    i32*
 
 ---
 
@@ -89,7 +93,7 @@ class: center, middle
 * add, mul, xor, ...
 * fadd, fmul, ... for floating point numbers
 
-    ; insert example here
+
     %a = add i32 %0, 23
     %b = fmul float 4.2, %2
 
@@ -118,13 +122,11 @@ class: center, middle
 
 ## alloca, load, store
 
-%int_ptr = alloca i32
-store i32 23, i32* %int_ptr
-%val = load i32* %int_ptr
-
+    %int_ptr = alloca i32
+    store i32 23, i32* %int_ptr
+    %val = load i32* %int_ptr
 
 ## getelementptr example
-
 
     %str_ptr = getelementptr [12 x i8]* @str, i64 0, i64 0
 
@@ -162,6 +164,8 @@ store i32 23, i32* %int_ptr
 
     ; "complex" signature with var args
     define i64 @foo(i64 %n, i64* %ptr, ...)
+
+---
 
 ## Function declaration
 
