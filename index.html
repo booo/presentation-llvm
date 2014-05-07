@@ -118,6 +118,10 @@ class: center, middle
 
 ## alloca, load, store
 
+%int_ptr = alloca i32
+store i32 23, i32* %int_ptr
+%val = load i32* %int_ptr
+
 
 ## getelementptr example
 
