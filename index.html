@@ -7,7 +7,9 @@
       @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
+      body {
+        font-family: 'Droid Serif';
+      }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
@@ -61,21 +63,17 @@ class: center, middle
 
 # Aggregate types
 
-* arrays, structs
-
-## array
+### arrays
 
     ; array of 42 i64 integers
     @stack = global [42 x i64] undef
 
-## struct
+### structs
 
     %node = type {
       i32,
       %node*
     }
-
-* packed structs
 
 ---
 
@@ -120,13 +118,13 @@ class: center, middle
 * alloca
 * getelementptr
 
-## alloca, load, store
+### alloca, load, store
 
     %int_ptr = alloca i32
     store i32 23, i32* %int_ptr
     %val = load i32* %int_ptr
 
-## getelementptr example
+### getelementptr example
 
     %str_ptr = getelementptr [12 x i8]* @str, i64 0, i64 0
 
@@ -201,7 +199,7 @@ class: center, middle
 
 ---
 
-# Fibonacci example
+Fibonacci example
 
     ; recursive fibonacci implementation
     define i64 @fib(i64 %n) {
